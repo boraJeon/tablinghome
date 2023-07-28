@@ -1,0 +1,72 @@
+[
+    {
+        "title": "날다네 가게 1",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/3ab6c33b22fc48f8aa5e4f4812d23553.png",
+        "rating": "3.9",
+        "reviewCount": "15",
+        "waitingCount": "2"
+    },
+    {
+        "title": "날다네 뭘 파는 가게 2",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/fdff671281def9d1aec1f01dde942d11.gif",
+        "rating": "4.7",
+        "reviewCount": "15",
+        "waitingCount": "0"
+    },
+    {
+        "title": "뭘 파는지 안알려주는 3",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/a5a9ae0407a2adfc30742dd9a3a75062.png",
+        "rating": "4.8",
+        "reviewCount": "300+",
+        "waitingCount": "19"
+    },
+    {
+        "title": "안알려주는 가게 4",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/c0307444b2a6e6b0090bb8ffaf7e5fbd.jpg",
+        "rating": "4.2",
+        "reviewCount": "300+",
+        "waitingCount": "9"
+    },
+    {
+        "title": "날다네 뭘파는지 안알려주는 가게",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/c0307444b2a6e6b0090bb8ffaf7e5fbd.jpg",
+        "rating": "4.8",
+        "reviewCount": "9",
+        "waitingCount": "39"
+    },
+    {
+        "title": "날다네 가게 11",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/a5a9ae0407a2adfc30742dd9a3a75062.png",
+        "rating": "1.7",
+        "reviewCount": "0",
+        "waitingCount": "120"
+    },
+    {
+        "title": "날다네 뭘 파는 가게 22",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/f62313942e84a698e523d141e91d1ba3.jpg",
+        "rating": "5.0",
+        "reviewCount": "0",
+        "waitingCount": "0"
+    },
+    {
+        "title": "뭘 파는지 안알려주는 33",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/fdff671281def9d1aec1f01dde942d11.gif",
+        "rating": "3.3",
+        "reviewCount": "288",
+        "waitingCount": "83"
+    },
+    {
+        "title": "안알려주는 가게 44",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/3ab6c33b22fc48f8aa5e4f4812d23553.png",
+        "rating": "3.1",
+        "reviewCount": "66",
+        "waitingCount": "39"
+    },
+    {
+        "title": "날다네 뭘파는지 안알려주는 가게5",
+        "thumbUrl": "https://image.tabling.co.kr/staging/restaurant/f62313942e84a698e523d141e91d1ba3.jpg",
+        "rating": "2.9",
+        "reviewCount": "29",
+        "waitingCount": "0"
+    }
+]
