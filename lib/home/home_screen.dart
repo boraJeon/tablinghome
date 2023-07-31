@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tablinghome/model/homemodel.dart';
+import 'package:tablinghome/model/restaurant_model.dart';
+import 'package:tablinghome/widget/RestaurantListTile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,12 +12,15 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+// if (isLoading) ... [
+// ]
+
 class _HomeScreenState extends State<HomeScreen> {
   final double horizontalPadding = 20;
 
   final strawberryImgPath = 'assets/img/strawberry.png';
 
-  bool isLocationAuth = false;
+  bool isLocationAuth = true;
 
   final bannerList = [
     {"title": "FirstBanner", "color": 0xffff9900},
@@ -24,17 +28,30 @@ class _HomeScreenState extends State<HomeScreen> {
     {"title": "ThirdBanner", "color": 0xffff0000}
   ];
 
-  late Future<List<HomeModel>> homeModelList = getHomeList();
+  late Future<List<RestaurantModel>> homeModelList = getHomeList();
 
-  // late List<HomeModel> homeModelList = <HomeModel>[];
-  Future<List<HomeModel>> getHomeList() async {
-    List<HomeModel> list = [];
-    final routeFromJsonFile =
-        await rootBundle.loadString('assets/json/home.json');
+  // Future<List<RestaurantModel>> getHomeList() async {
+  //   List<RestaurantModel> list = [];
+  //   final routeFromJsonFile =
+  //       await rootBundle.loadString('assets/json/home.json');
 
-    List<dynamic> listFromJson = jsonDecode(routeFromJsonFile);
-    list = listFromJson.map((e) => HomeModel.fromJson(e)).toList();
-    return list;
+  //   List<dynamic> listFromJson = jsonDecode(routeFromJsonFile);
+  //   list = listFromJson.map((e) => RestaurantModel.fromJson(e)).toList();
+  //   return list;
+  // }
+
+  Future<List<RestaurantModel>> getHomeList() async {
+    final jsonString = await rootBundle.loadString('assets/json/home.json');
+    final jsonResponse = json.decode(jsonString);
+    List<RestaurantModel> lists = [];
+    for (var item in jsonResponse) {
+      final instance = RestaurantModel.fromJson(item);
+      print(instance.restaurantName);
+      lists.add(instance);
+    }
+
+    print(">>>>> lists: ${lists.length}");
+    return lists;
   }
 
   @override
@@ -328,22 +345,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             future: homeModelList,
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                return SizedBox(
-                                  height: 300,
-                                  child: ListView.builder(
-                                    physics: const ScrollPhysics(),
-                                    itemCount: snapshot.data!.length,
-                                    itemBuilder: (context, index) {
-                                      var homeModel = snapshot.data![index];
-                                      print(snapshot.data!.length);
-                                      return SizedBox(
-                                          height: 120,
-                                          child: ListCard(
-                                              horizontalPadding:
-                                                  horizontalPadding,
-                                              homeData: homeModel));
-                                    },
-                                  ),
+                                return ListView.builder(
+                                  physics: const ScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (context, index) {
+                                    var restaurantData = snapshot.data![index];
+                                    return
+                                        // ListCard(
+                                        //     restaurantData: restaurantData);
+                                        RestaurantListTile(
+                                      restaurantModel: restaurantData,
+                                      onTapHandler: () {
+                                        print(
+                                            " tapppped >> restaurnat Name : ${restaurantData.restaurantName}");
+                                      },
+                                    );
+                                  },
                                 );
                               }
                               return const Text(
@@ -351,6 +369,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                           ),
+
+                          // FutureBuilder(
+                          //   future: homeModelList,
+                          //   builder: (context, snapshot) {
+                          //     if (snapshot.hasData) {
+                          //       return ListView.builder(
+                          //         itemCount: snapshot.data!.length,
+                          //         itemBuilder: (context, index) {
+                          //           var data = snapshot.data![index];
+                          //           return Text(data.restaurantName);
+                          //         },
+                          //       );
+                          //     }
+                          //     return const Text("Empty!!");
+                          //   },
+                          // )
                         ],
                       ),
                     ),
@@ -416,22 +450,19 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ListCard extends StatelessWidget {
-  final HomeModel homeData;
+  final RestaurantModel restaurantData;
 
   const ListCard({
     super.key,
-    required this.horizontalPadding,
-    required this.homeData,
+    required this.restaurantData,
   });
-
-  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-          // horizontal: horizontalPadding,
-          ),
+        vertical: 5,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -448,7 +479,8 @@ class ListCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 child: Image.network(
-                  homeData.thumbUrl,
+                  restaurantData.thumbnail,
+                  fit: BoxFit.cover,
                 ),
               ),
               Positioned(
@@ -468,7 +500,7 @@ class ListCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "대기 ${homeData.waitingCount}명",
+                    "대기 ${restaurantData.waitingCount}명",
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -487,7 +519,7 @@ class ListCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                homeData.title,
+                restaurantData.restaurantName,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -503,7 +535,8 @@ class ListCard extends StatelessWidget {
                     size: 17,
                     color: Colors.yellow.shade600,
                   ),
-                  Text("${homeData.rating} (${homeData.reviewCount})"),
+                  Text(
+                      "${restaurantData.rating} (${restaurantData.reviewCount})"),
                 ],
               ),
               const SizedBox(
