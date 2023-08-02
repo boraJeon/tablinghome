@@ -18,8 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final double horizontalPadding = 20;
 
-  final strawberryImgPath = 'assets/img/strawberry.png';
-
   bool isLocationAuth = true;
 
   final bannerList = [

@@ -17,8 +17,9 @@ class RestaurantImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: (border != null) ? border : null,
-          borderRadius: (radius != null) ? radius : null),
+        border: border,
+        borderRadius: radius,
+      ),
       clipBehavior: Clip.hardEdge,
       width: 100,
       height: 100,
