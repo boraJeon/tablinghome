@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SwitchTile extends StatefulWidget {
   final String title;
@@ -61,30 +61,37 @@ class _SwitchTileState extends State<SwitchTile> {
         const Spacer(),
         Container(
           // iOS / android 기기구분하는 로직 추가
-          alignment: Alignment.topRight,
-          child: defaultTargetPlatform == TargetPlatform.iOS
-              ? CupertinoSwitch(
-                  value: widget.switchSelected,
-                  onChanged: (value) {
-                    widget.onChangedHandler(value);
-                    print("change switch");
-                    setState(() {
-                      print("value $value");
-                      widget.switchSelected = value;
-                    });
-                  },
-                )
-              : Switch(
-                  value: widget.switchSelected,
-                  onChanged: (value) {
-                    widget.onChangedHandler(value);
-                    print("change switch");
-                    setState(() {
-                      print("value $value");
-                      widget.switchSelected = value;
-                    });
-                  },
-                ),
+          // flutter_platform_widgets 추가
+
+          // alignment: Alignment.topRight,
+          // child: defaultTargetPlatform == TargetPlatform.iOS
+          //     ? CupertinoSwitch(
+          //         value: widget.switchSelected,
+          //         onChanged: (value) {
+          //           widget.onChangedHandler(value);
+          //           setState(() {
+          //             widget.switchSelected = value;
+          //           });
+          //         },
+          //       )
+          //     : Switch(
+          //         value: widget.switchSelected,
+          //         onChanged: (value) {
+          //           widget.onChangedHandler(value);
+          //           setState(() {
+          //             widget.switchSelected = value;
+          //           });
+          //         },
+          //       ),
+          child: PlatformSwitch(
+            value: widget.switchSelected,
+            onChanged: (value) {
+              widget.onChangedHandler(value);
+              setState(() {
+                widget.switchSelected = value;
+              });
+            },
+          ),
         ),
       ],
     );
