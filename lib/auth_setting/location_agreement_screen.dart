@@ -15,10 +15,6 @@ class LocationAgreementScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          // const SliverAppBar(
-          //   backgroundColor: Colors.white,
-          //   title: AppBarTitleText(title: "위치기반 서비스 이용약관 설정"),
-          // ),
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 16,
@@ -31,6 +27,7 @@ class LocationAgreementScreen extends StatelessWidget {
                 horizontal: 24,
               ),
               child: SwitchTile(
+                isSelected: true,
                 title: "위치기반 서비스 이용약관 동의",
                 onChangedHandler: (value) {
                   print("onChangedHandler value");

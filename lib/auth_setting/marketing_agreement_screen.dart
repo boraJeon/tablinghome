@@ -101,6 +101,7 @@ class MarketingAgreementScreen extends StatelessWidget {
                   horizontal: 24,
                 ),
                 child: SwitchTile(
+                  isSelected: true,
                   useLeadingIcon: useLeadingIcon,
                   title: title,
                   onChangedHandler: (isSelected) {
