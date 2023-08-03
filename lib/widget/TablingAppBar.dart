@@ -13,12 +13,10 @@ class TablingAppBar extends StatelessWidget implements PreferredSizeWidget {
     // 이 방식보다는 iconTheme를 밖으로 빼고싶다. main.dart로
     // 근데 main.dart에서 AppBar에 iconTheme, backgroundColor만 넣고,
     // 각 화면에서 AppBar를 추가로 넣었더니 앱바가 두개씩 생겼다.
+    // > 찾았다. theme 에 있었네!!
+
     return AppBar(
-      iconTheme: const IconThemeData(
-        color: Colors.black,
-      ),
       elevation: 0,
-      backgroundColor: Colors.white,
       title: Text(
         title,
         style: const TextStyle(
