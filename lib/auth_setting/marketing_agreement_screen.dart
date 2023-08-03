@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tablinghome/widget/AppBarTitleText.dart';
+import 'package:tablinghome/auth_setting/location_agreement_screen.dart';
 import 'package:tablinghome/widget/SwitchTile.dart';
+import 'package:tablinghome/widget/TablingAppBar.dart';
 
 class MarketingAgreementScreen extends StatelessWidget {
   MarketingAgreementScreen({super.key});
@@ -49,12 +50,11 @@ class MarketingAgreementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const TablingAppBar(
+        title: "마케팅 알림 수신 동의",
+      ),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            backgroundColor: Colors.white,
-            title: AppBarTitleText(title: "마케팅 알림 수신 동의"),
-          ),
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(
@@ -133,7 +133,15 @@ class MarketingAgreementScreen extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            print("navigator Push");
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LocationAgreementScreen(),
+              ),
+            );
+          },
         ),
       ),
     );

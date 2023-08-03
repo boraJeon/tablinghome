@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tablinghome/auth_setting/auth_settings_screen.dart';
+
+import 'auth_setting/marketing_agreement_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,11 +11,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        // body: MarketingAgreementScreen(),
-        // body: LocationAgreementScreen(),
-        body: AuthSettingsScreen(),
+        body: MarketingAgreementScreen(),
       ),
     );
   }
