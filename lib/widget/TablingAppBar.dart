@@ -22,6 +22,7 @@ class TablingAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: const TextStyle(
           color: Color(0xff0A0C11),
           fontSize: 17,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
